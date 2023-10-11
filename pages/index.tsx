@@ -28,7 +28,7 @@ const HomePage: NextPage = () => {
 
         
     
-
+ 
     </ShopLayout>
   )
 }

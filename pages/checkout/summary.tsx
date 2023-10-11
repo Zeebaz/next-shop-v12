@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import NextLink from "next/link";
 
 import {
@@ -10,6 +10,8 @@ import {
   Divider,
   Grid,
   Typography,
+  CircularProgress,
+  Chip,
 } from "@mui/material";
 
 import { CartContext } from "../../context";
@@ -21,8 +23,11 @@ import { useRouter } from "next/router";
 import { FullScreenLoading } from "@/components/ui";
 
 const SummaryPage = () => {
-  const { shippingAddress, numberOfItems } = useContext(CartContext);
+  const { shippingAddress, numberOfItems, createOrder } =
+    useContext(CartContext);
   const router = useRouter();
+  const [isPosting, setIsPosting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     if (!Cookies.get("firstName")) {
@@ -30,7 +35,32 @@ const SummaryPage = () => {
     }
   }, [router]);
 
-  console.log(shippingAddress);
+  const onCreateOrder = async () => {
+    setIsPosting(true);
+    try {
+      const { hasError, message } = await createOrder();
+
+      if (hasError) {
+        showError(message);
+        return;
+      }
+
+      router.replace(`/orders/${message}`);
+    } catch (error) {
+      if (error instanceof Error) {
+        showError(error.message);
+      }
+    }
+  };
+
+  const showError = (message: string) => {
+    setErrorMessage(message);
+    setTimeout(() => {
+      setErrorMessage("");
+      setIsPosting(false);
+    }, 3000);
+  };
+
   if (!shippingAddress) {
     return <FullScreenLoading />;
   }
@@ -102,10 +132,38 @@ const SummaryPage = () => {
 
               <OrderSummary />
 
-              <Box sx={{ mt: 3 }}>
-                <Button color="secondary" className="circular-btn" fullWidth>
+              <Box
+                sx={{ mt: 1, position: "relative" }}
+                display={"flex"}
+                flexDirection={"column"}
+              >
+                <Button
+                  color="secondary"
+                  className="circular-btn"
+                  fullWidth
+                  onClick={onCreateOrder}
+                  disabled={isPosting}
+                >
                   Confirmar Orden
                 </Button>
+                <Chip
+                  color="error"
+                  label={errorMessage}
+                  sx={{ display: errorMessage ? "flex" : "none", mt: 2 }}
+                />
+                {!errorMessage && isPosting && (
+                  <CircularProgress
+                    size={15}
+                    sx={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      bottom: 0,
+                      right: 0,
+                      margin: "auto",
+                    }}
+                  />
+                )}
               </Box>
             </CardContent>
           </Card>
