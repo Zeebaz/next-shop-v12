@@ -34,8 +34,8 @@ export const authOptions = {
         },
       },
       async authorize(credentials, req): Promise<User | null> {
-        console.log(" >>>>>>>>>>>> CREDENTIAL ", { credentials });
-        console.log("ESTO SOLO OCURRE EN LOGIN");
+        /* console.log(" >>>>>>>>>>>> CREDENTIAL ", { credentials });
+        console.log("ESTO SOLO OCURRE EN LOGIN"); */
         return await dbUsers.checkUserEmailPassword(
           credentials!.email,
           credentials!.password
@@ -77,13 +77,13 @@ export const authOptions = {
       account: Account | null;
       profile?: Profile | undefined;
     }) {
-      console.log(" >>>>>>>>>>>> JWT CALLBACK", {
+      /* console.log(" >>>>>>>>>>>> JWT CALLBACK", {
         token,
         user,
         account,
         profile,
       });
-      console.log(" >>>>>>>>>>>> ACCESS_", account?.access_token);
+      console.log(" >>>>>>>>>>>> ACCESS_", account?.access_token); */
 
       if (account) {
         token.accessToken = account.access_token;
@@ -115,9 +115,9 @@ export const authOptions = {
       token: JWT;
       user: AdapterUser;
     }) {
-      console.log(" >>>>>>>>>>>> SESSION CALLBACK", { session, token, user });
+      /* console.log(" >>>>>>>>>>>> SESSION CALLBACK", { session, token, user });
       console.log(" >>>>>>>>>>>> ACCESS", token.accessToken);
-      console.log(" >>>>>>>>>>>> USER", token.user);
+      console.log(" >>>>>>>>>>>> USER", token.user); */
       session.accessToken = token.accessToken as string;
       session.user = token.user!;
 

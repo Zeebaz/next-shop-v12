@@ -10,6 +10,7 @@ yarn dev
 
 1. Create `/mongo`, this is to volumen data
 2. Create `.env` and `.env.template`
+  * `.env.development` or `.env.production`
     1. template with > MONGO_URL = mongo_url
     2. MONGO_URL = mongodb://localhost:27017/teslodb
     3. NEXT_PUBLIC_TAX_RATE=TAX_VALUE
