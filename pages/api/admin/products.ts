@@ -10,7 +10,7 @@ cloudinary.config(process.env.CLOUDINARY_URL || "");
 
 type Data = { message: string } | IProduct[] | IProduct;
 
-export default function (req: NextApiRequest, res: NextApiResponse<Data>) {
+export default function api(req: NextApiRequest, res: NextApiResponse<Data>) {
   switch (req.method) {
     case "GET":
       return getProducts(req, res);

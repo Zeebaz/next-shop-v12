@@ -15,7 +15,7 @@ export const config = {
   },
 };
 
-export default function (req: NextApiRequest, res: NextApiResponse<Data>) {
+export default function api(req: NextApiRequest, res: NextApiResponse<Data>) {
   switch (req.method) {
     case "POST":
       return uploadFile(req, res);

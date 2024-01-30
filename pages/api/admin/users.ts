@@ -3,6 +3,7 @@ import { IUser } from "@/interfaces";
 import { User } from "@/models";
 import { isValidObjectId } from "mongoose";
 import type { NextApiRequest, NextApiResponse } from "next";
+import api from './upload';
 
 type Data =
   | {
@@ -10,7 +11,7 @@ type Data =
     }
   | IUser[];
 
-export default function (req: NextApiRequest, res: NextApiResponse<Data>) {
+export default function apirest(req: NextApiRequest, res: NextApiResponse<Data>) {
   switch (req.method) {
     case "GET":
       return getUsers(req, res);

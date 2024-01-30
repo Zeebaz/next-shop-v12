@@ -60,7 +60,7 @@ const AddressPage = () => {
     const addressFromCookies = getAddressFromCookies();
     reset(addressFromCookies);
     setDefaultCountry(addressFromCookies.country);
-  }, [reset, getAddressFromCookies]);
+  }, [reset]);
 
   const onSubmitAddress = (data: FormData) => {
     updateAddress(data);

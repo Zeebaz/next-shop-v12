@@ -12,7 +12,7 @@ type Data = {
   lowInventory: number;
 };
 
-export default async function (
+export default async function AdminDashboard(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {

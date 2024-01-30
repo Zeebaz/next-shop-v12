@@ -73,7 +73,7 @@ export const authOptions = {
       profile,
     }: {
       token: JWT;
-      user: User & { _id?: string | undefined; role?: string | undefined; } | AdapterUser ;
+      user: User & { _id?: string | undefined; role?: string | undefined; } | AdapterUser & { _id?: string | undefined; role?: string | undefined; };
       account: Account | null;
       profile?: Profile | undefined;
     }) {
