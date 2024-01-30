@@ -17,8 +17,32 @@ yarn dev
     4. JWT_SECRET_SEED = ESt@ESSssLasedmillaz?--@1346
     5. NEXT_PUBLIC_PAYPAL_CLIENT_ID
     6. PAYPAL_SECRET_KEY
+
+
+    ```env
+    HOST_NAME=http://localhost:3000/
+    MONGO_URL = MONGOURI
+    JWT_SECRET_SEED = JWT_SEED
+    NEXTAUTH_SECRET = JWT_SEED
+
+    # Public variables
+    NEXT_PUBLIC_TAX_RATE = TAX_VALUE
+
+    # Providers
+    GITHUB_ID = GITHUB_ID
+    GITHUB_SECRET = GITHUB_SECRET
+
+    # Paypal
+    NEXT_PUBLIC_PAYPAL_CLIENT_ID = PAYPAL_CLIENT_ID 
+    PAYPAL_SECRET_KEY = PAYPAL_SECRET_KEY
+    PAYPAL_OAUTH_URL = PAYPAL_OAUTH_URL
+    PAYPAL_ORDERS_URL = PAYPAL_ORDERS_URL
+
+    # cloudinary bucket
+    CLOUDINARY_URL=CLOUDINARY_URL
+    ```
 3. `docker-compose.yaml`
-    1. Copy this
+    1. Copy this (this is to build the development database)
     
     ```docker
     services:
@@ -43,12 +67,9 @@ yarn dev
 First, run the development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
-# or
-pnpm dev
 ```
 
+On development mode:
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
